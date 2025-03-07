@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <title>Bhagavad Gita Inspiration</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Bhagavad Gita Inspiration</h1>
+
+      <!-- Search Container -->
+      <div class="search-container">
+        <input type="number" id="chapter-input" placeholder="Chapter" min="1" max="18">
+        <input type="number" id="verse-input" placeholder="Verse" min="1">
+        <button id="search-btn">Search</button>
+        <button id="view-bookmarks-btn" title="View Bookmarks">
+          <i class="fas fa-list"></i>
+        </button>
+      </div>
+
+      <!-- Verse Card -->
+      <div id="verse-card">
+        <p>
+          <strong>Subject:</strong> <br />
+          <strong><span id="subject"></span></strong>
+        </p>
+        <p>
+          <strong
+            >Chapter <span id="chapter-number"></span>, Verse
+            <span id="verse-number"></span>:</strong
+          >
+          <br />
+          "<span id="verse"></span>"
+        </p>
+        <p>
+          <strong>Simplified Meaning:</strong> <br />
+          <span id="meaning"></span>
+        </p>
+        <p>
+          <strong>Explanation:</strong> <br /><span id="explanation"></span>
+        </p>
+        <p><strong>Solution:</strong> <br /><span id="solution"></span></p>
+      </div>
+
+      <!-- Buttons -->
+      <button id="bookmark-btn" title="Bookmark This Verse">
+        <i class="fas fa-bookmark"></i>
+      </button>
+      <button id="random-verse-btn" title="Generate Random Verse">
+        <i class="fas fa-shuffle"></i>
+      </button>
+      <button id="share-btn" title="Share This Verse">
+        <i class="fas fa-share"></i>
+      </button>
+      <button id="translate-btn" title="Translate to Hindi">
+        <i class="fas fa-language"></i>
+      </button>
+      <button id="dark-mode-toggle" title="Toggle Dark Mode">
+        <i class="fas fa-sun"></i>
+      </button>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
