@@ -1,9 +1,10 @@
 const VERSES_URL = 'https://raw.githubusercontent.com/Yashank06/bhagavad-gita-app/main/verses.json';
 
-// Fetch the verses from the JSON file
-let verses = [];
-let currentLanguage = 'en';
+let verses = []; // All verses from JSON
+let currentLanguage = 'en'; // Default language is English
+let currentVerse = null; // Store the current verse
 
+// Fetch the verses from the hosted JSON file
 fetch(VERSES_URL)
   .then(response => response.json())
   .then(data => {
@@ -14,8 +15,11 @@ fetch(VERSES_URL)
 
 // Function to display a random verse
 function displayRandomVerse() {
+  if (verses.length === 0) return;
+
   const randomIndex = Math.floor(Math.random() * verses.length);
-  displayVerse(verses[randomIndex]);
+  currentVerse = verses[randomIndex]; // Store the current verse
+  displayVerse(currentVerse);
 }
 
 // Function to display a specific verse
@@ -24,19 +28,13 @@ function displayVerse(verse) {
   verseCard.classList.remove('visible');
 
   setTimeout(() => {
-
-    document.getElementById('subject').textContent = verse.subject;
-
-    // Display chapter and verse number
     document.getElementById('chapter-number').textContent = verse.chapter;
     document.getElementById('verse-number').textContent = verse.verse_number;
-
-    // Display verse details
-    document.getElementById('verse').textContent = verse.verse[currentLanguage];
-    document.getElementById('meaning').textContent = verse.meaning[currentLanguage];
-    document.getElementById('explanation').textContent = verse.explanation[currentLanguage];
-    document.getElementById('solution').textContent = verse.solution[currentLanguage];
-
+    document.getElementById('subject').textContent = verse.subject;
+    document.getElementById('verse').textContent = verse.verse[currentLanguage] || verse.verse['en'];
+    document.getElementById('meaning').textContent = verse.meaning[currentLanguage] || verse.meaning['en'];
+    document.getElementById('explanation').textContent = verse.explanation[currentLanguage] || verse.explanation['en'];
+    document.getElementById('solution').textContent = verse.solution[currentLanguage] || verse.solution['en'];
     verseCard.classList.add('visible');
   }, 300); // Match the transition duration
 }
@@ -116,12 +114,15 @@ if (localStorage.getItem('darkMode') === 'true') {
   document.body.classList.add('dark-mode');
 }
 
-// Toggle translation between English and Hindi
+// Function to toggle translation
 function toggleTranslation() {
-  currentLanguage = currentLanguage === 'en' ? 'hi' : 'en';
-  displayRandomVerse();
+  currentLanguage = currentLanguage === 'en' ? 'hi' : 'en'; // Toggle between English and Hindi
+  if (currentVerse) {
+    displayVerse(currentVerse); // Re-render the current verse in the new language
+  }
 }
 
+// Event listener for the translate button
 document.getElementById('translate-btn').addEventListener('click', toggleTranslation);
 
 // Display a random verse on page load

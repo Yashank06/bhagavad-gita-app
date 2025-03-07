@@ -10,7 +10,7 @@ body {
   transition: background-color 0.3s, color 0.3s;
 }
 
-h1{
+h2{
   font-family: "Playfair Display", serif;
   font-optical-sizing: auto;
   font-weight: 400;
