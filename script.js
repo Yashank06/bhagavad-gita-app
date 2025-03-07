@@ -1,8 +1,10 @@
+const VERSES_URL = 'https://raw.githubusercontent.com/Yashank06/bhagavad-gita-app/main/verses.json';
+
 // Fetch the verses from the JSON file
 let verses = [];
 let currentLanguage = 'en';
 
-fetch('verses.json')
+fetch(VERSES_URL)
   .then(response => response.json())
   .then(data => {
     verses = data;
